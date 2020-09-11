@@ -1,0 +1,62 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class HotelTest {
+
+	@Test
+	void test() {
+		Hotel test1 = new Hotel("Jake's Place", "Seattle, WA");
+		String strTest = "Hotel Name: Jake's Place\nLocation: Seattle, WA\nNumber of Rooms: 0\nCurrent Revenue: $0\n===========================\n\n";
+		assertEquals(strTest, test1.toString()); // check toString without rooms
+		System.out.println(test1.toString());
+		
+		// testing adding rooms 
+		assertEquals(true, test1.addRoom(1, "queen", 100));
+		assertEquals(true, test1.addRoom(2, "king", 200));
+		assertEquals(true, test1.addRoom(3, "twin", 75));
+		assertEquals(true, test1.addRoom(4, "twin", 75));
+		assertEquals(true, test1.addRoom(5, "queen", 100));
+		assertEquals(true, test1.addRoom(6, "queen", 100));
+		assertEquals(true, test1.addRoom(7, "queen", 100));
+		assertEquals(true, test1.addRoom(8, "queen", 100));
+		assertEquals(true, test1.addRoom(9, "queen", 100));
+		assertEquals(false, test1.addRoom(9, "queen", 100)); // return false because the roomNumber exists
+		assertEquals(true, test1.addRoom(10, "queen", 100));
+		assertEquals(false, test1.addRoom(11, "queen", 100)); // returns false because this is the 11th room and greater than the size of the hotel room's array
+		
+//		System.out.println(test1.toString());
+//		System.out.println("BREAK BREAK BREAK");
+//		System.out.println();
+		
+		// testing adding rooms 
+		assertEquals(true, test1.addReservation("king", "Smith")); // adding reservation successfully
+		assertEquals(false, test1.addReservation("king", "Jones")); // add reservation returns false if there are no unnocupied rooms with the bed type requested
+		assertEquals(true, test1.addReservation("queen", "Leiner")); // adding reservation successfully
+		assertEquals(true, test1.addReservation("queen", "Leiner")); // adding reservation successfully
+		assertEquals(true, test1.addReservation("queen", "Leiner")); // adding reservation successfully
+		assertEquals(false, test1.isFull()); // testing to see if the hotel is full works properly
+		assertEquals(true, test1.addReservation("queen", "Leiner")); // adding reservation successfully
+		assertEquals(true, test1.addReservation("queen", "Leiner")); // adding reservation successfully
+		assertEquals(true, test1.addReservation("queen", "Leiner")); // adding reservation successfully
+		assertEquals(true, test1.addReservation("queen", "Leiner")); // adding reservation successfully
+		assertEquals(true, test1.addReservation("twin", "Lawson")); // adding reservation successfully
+		assertEquals(true, test1.addReservation("twin", "Lawson")); // adding reservation successfully
+		assertEquals(true, test1.isFull()); // testing to see if the hotel is full works properly
+		System.out.println(test1.toString());
+		
+		// testing removing rooms
+		assertEquals(true, test1.cancelReservation("Leiner"));
+		System.out.println(test1.cancelReservation("Burns"));
+		assertEquals(false, test1.cancelReservation("Burns"));
+		System.out.println("BREAK BREAK BREAK");
+		System.out.println();
+		System.out.println(test1.toString());
+		
+		// test default constructors
+		Hotel test2 = new Hotel();
+		Room test3 = new Room();
+		
+	}
+
+}

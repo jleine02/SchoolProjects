@@ -1,0 +1,10 @@
+
+
+public class Hotel {
+	private Room[] rooms;
+	private String name;
+	private String location;
+	private int numberOfRooms;
+	
+
+}

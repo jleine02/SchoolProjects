@@ -1,0 +1,67 @@
+// Jacob Leiner, Project 2 - Hotel: Room Class, COP 5007 Spring 2020, Prof Bitner, 2/1/2020
+
+public class Room {
+	private int roomNumber;
+	private String bedType;
+	private int rate;
+	private String occupantName;
+	
+	// Constructor using Paramaters
+	public Room(int roomNumber, String bedType, int rate) {
+		this.roomNumber = roomNumber;
+		this.bedType = bedType;
+		this.rate = rate;
+		this.occupantName = "";
+	}
+	
+	// Default constructor
+	public Room() {
+		this.roomNumber = -1;
+		this.bedType = "none";
+		this.rate = -1;
+		this.occupantName = "none";
+	}
+
+	public String getOccupantName() {
+		return occupantName;
+	}
+
+	public int getRoomNumber() {
+		return roomNumber;
+	}
+
+	public String getBedType() {
+		return bedType;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+	
+	// checks to see if a room is occupied based on whether the occupantName attribute is an empty string or not
+	public boolean isOccupied() {
+		if (this.occupantName.equals("")) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public void setOccupantName(String occupantName) {
+		this.occupantName = occupantName;
+	}
+	
+	// checks to see whether a room is occupied and returns the appropriate string
+	public String toString() {
+		if(isOccupied()) {
+			return "Room Number: " + this.roomNumber + "\nOccupant Name: " + this.occupantName + "\nBed Type: " 
+					+ this.bedType + "\nRate: " + this.rate;
+		} else {
+			return "Room Number: " + this.roomNumber + "\nOccupant Name: Not Occupied\nBed Type: " + this.bedType 
+					+ "\nRate: " + this.rate;
+		}
+		
+	}
+	
+
+}

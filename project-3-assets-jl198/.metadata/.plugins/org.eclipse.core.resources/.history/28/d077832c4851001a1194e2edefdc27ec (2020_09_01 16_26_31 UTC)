@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+
+public class Investment {
+	private String investmentName;
+	private double dollarsInvested;
+
+		
+	public Investment(String investmentName, double dollarsInvested) {
+		this.investmentName = investmentName;
+		this.dollarsInvested = dollarsInvested;
+	}
+	
+	private double calculateReturn(ArrayList<Asset> assets) {
+		for(Asset asset : assets) {
+			if(this.investmentName == asset.getName()) {
+				return this.dollarsInvested * Math.pow(1 + asset.getExpectedReturn(), 10);
+			} else {
+				continue;
+			}
+		}
+		return -1;
+	}
+}

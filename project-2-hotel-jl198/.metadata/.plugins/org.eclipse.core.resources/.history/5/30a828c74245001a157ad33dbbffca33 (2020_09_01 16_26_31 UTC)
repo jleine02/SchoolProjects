@@ -1,0 +1,23 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class HotelTest {
+
+	@Test
+	void test() {
+		Hotel test1 = new Hotel("Jake's Place", "Seattle, WA");
+		String strTest = "Hotel Name: Jake's Place\nLocation: Seattle, WA\nNumber of Rooms: 0\nCurrent Revenue: $0\n===========================\n\n";
+		assertEquals(strTest, test1.toString()); // check toString without rooms
+		System.out.println(test1.toString());
+		
+		assertEquals(true, test1.addRoom(1, "queen", 100));
+		assertEquals(true,test1.addRoom(2, "king", 200));
+		assertEquals(true,test1.addRoom(3, "twin", 75));
+		assertEquals(true,test1.addRoom(4, "twin", 75));
+		assertEquals(true,test1.addRoom(5, "queen", 100));
+		assertEquals(true,test1.addRoom(6, "queen", 100));
+		System.out.println(test1.toString());
+	}
+
+}

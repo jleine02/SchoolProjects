@@ -1,0 +1,38 @@
+
+
+public class Hotel {
+	private Room[] rooms;
+	private String name;
+	private String location;
+	private int numberOfRooms;
+	
+	public Hotel(String name, String location) {
+		this.name = name;
+		this.location = location;
+	}
+	
+	public boolean isFull() {
+		return true;
+	}
+	
+	// consider making this function return boolean whether it was succesful or not?
+	public void addRoom(int roomNumber, String bedType, int rate, String occupantName) {
+		
+	}
+	
+	public boolean addReservation(String bedType, String occupantName) {
+		return true;
+	}
+	
+	public boolean cancelReservation(String occupantName) {
+		return true;
+	}
+	
+	public int findReservation(String occupantName) {
+		return -1;
+	}
+	
+	public String toString() {
+		return "";
+	}
+}

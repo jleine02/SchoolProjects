@@ -1,0 +1,24 @@
+
+public class Investment {
+	private String investmentName;
+	private int dollarsInvested;
+	private int dollarsAfterTenYears;
+		
+	public Investment(String investmentName, int dollarsInvested, ArrayList<Assets> assets) {
+		this.investmentName = investmentName;
+		this.dollarsInvested = dollarsInvested;
+		this.dollarsAfterTenYears = calculateReturn(investmentName, dollarsInvested, assets);
+	}
+	
+	private double calculateReturn(String investmentName, double dollarsInvested, ArrayList<Assets> assets) {
+		for(Asset asset : assets) {
+			if(investmentName == asset.getName()) {
+				if(asset.getWeightScheme == "A") {
+					
+				}
+			}
+		}
+	}
+	
+	
+}

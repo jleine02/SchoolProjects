@@ -1,0 +1,86 @@
+
+
+public class Hotel {
+	private Room[] rooms;
+	private String name;
+	private String location;
+	private int numberOfRooms;
+	private static final int NOT_FOUND = -1;
+	
+	public Hotel(String name, String location) {
+		setName(name);
+		setLocation(location);
+		setNumberOfRooms(0);
+		setRooms();
+	}
+	
+	public Hotel() {
+		setName("");
+		setLocation("");
+		setNumberOfRooms(0);
+		setRooms();
+	}
+	
+	public boolean isFull() {
+		int occupiedCount = 0;
+		for(int i = 0; i < rooms.length; i++) {
+			if(rooms[i].isOccupied()) {
+				occupiedCount++;
+			}
+		}
+		return occupiedCount == numberOfRooms;
+	}
+	
+	// checks to make sure the roomNumber does not exist before creating the room object
+	public boolean addRoom(int roomNumber, String bedType, int rate) {
+		boolean roomNumberExists = false;
+		for(int i = 0; i < rooms.length; i++) {
+			if(rooms[i].getRoomNumber() == roomNumber) {
+				roomNumberExists = true;
+			}
+		}
+		
+		if(!roomNumberExists && this.numberOfRooms < 10) {
+			rooms[numberOfRooms] = new Room(roomNumber, bedType, rate);
+			numberOfRooms++;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	// checks to make sure that the bedType is still available prior to setting the room to occupied within the hotel rooms array
+	public boolean addReservation(String bedType, String occupantName) {
+		return true;
+	}
+	
+	public boolean cancelReservation(String occupantName) {
+		return true;
+	}
+	
+	private int findReservation(String occupantName) {
+		return -1;
+	}
+	
+	public String toString() {
+		return "";
+	}
+
+	public void setRooms() {
+		this.rooms = new Room[10];
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public void setNumberOfRooms(int numberOfRooms) {
+		this.numberOfRooms = numberOfRooms;
+	}
+
+	
+}

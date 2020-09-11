@@ -1,0 +1,18 @@
+
+public class StableAsset extends Asset{
+	private String tag;
+	private String name;
+	private double expectedReturn;
+	
+	
+	
+	public StableAsset(String tag, String name, double expectedReturn) {
+		this.tag = tag;
+		this.name = name;
+		this.expectedReturn = expectedReturn;
+	}
+
+	public double calculateReturn(int amount, String weightScheme) {
+		return amount * Math.pow((1 + expectedReturn),10);
+	}
+}

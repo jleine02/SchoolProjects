@@ -1,0 +1,18 @@
+
+public class test {
+	public static void main(String[] args) {
+		String[] test = {"BABA", "Alibaba",  "", "0.11441878", "0.284570289"};
+		String currentTag;
+	      String currentName;
+	      Double firstDouble;
+	      Double secondDouble;
+	      Double thirdDouble;
+	      int fieldCount;
+		
+		fieldCount = test.length;
+        currentTag = test[0];
+        currentName = test[1];
+//        firstDouble = Double.parseDouble(test[2]);
+        System.out.println(fieldCount);
+	}
+}

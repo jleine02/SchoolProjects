@@ -1,0 +1,24 @@
+
+public class VariableAsset extends Asset {
+	private String tag;
+	private String name;
+	private double fiveYearReturn;
+	private double oneYearReturn;
+	private double ninetyDayReturn;
+	
+	
+	
+	public VariableAsset(String tag, String name, double fiveYearReturn, double oneYearReturn, double ninetyDayReturn) {
+		this.tag = tag;
+		this.name = name;
+		this.fiveYearReturn = fiveYearReturn;
+		this.oneYearReturn = oneYearReturn;
+		this.ninetyDayReturn = ninetyDayReturn;
+	}
+
+
+
+	public double calculateReturn(int amount, String weightScheme) {
+		return amount * Math.pow((1 + expectedReturn),10);
+	}
+}

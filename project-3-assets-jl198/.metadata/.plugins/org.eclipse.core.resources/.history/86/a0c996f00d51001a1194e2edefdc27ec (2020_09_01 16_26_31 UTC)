@@ -1,0 +1,12 @@
+
+abstract class Asset {
+//	STOCK_TICKER,NAME_OF_STOCK,5_YEAR_RETURN,1_YEAR_RETURN,90_DAY_RETURN
+//	STABLE_ASSET_TAG,NAME_OF_ASSET,EXPECTED_RETURN
+	
+	private String identifier;
+	private String name;
+	private String weightScheme;
+	
+	abstract double calculateReturn(int quantity, String weightScheme);
+	
+}

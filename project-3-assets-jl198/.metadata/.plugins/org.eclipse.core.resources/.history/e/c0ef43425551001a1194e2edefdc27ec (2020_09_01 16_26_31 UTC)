@@ -1,0 +1,40 @@
+import java.io.FileInputStream;
+import java.util.ArrayList;
+
+public class Portfolio {
+	private ArrayList<Investment> investments;
+	Assets availableAssets;
+	
+	public Portfolio(Assets assetList) {
+		investments = new ArrayList<Investment>();
+		availableAssets = assetList;
+	}
+	
+	public void addInvestmentToPortfolio(Investment investment) {
+		investments.add(investment);
+	}
+	
+	public String assetsToString() {
+		return availableAssets.toString();			
+	}
+	
+	public int getInvestmentSize() {
+		return investments.size();
+	}
+	public ArrayList<Investment> getInvestments() {
+		return this.investments;
+	}
+	
+	public int checkInList(String tag) {
+		int inList = -1;
+		for(Asset asset : availableAssets.getAssetList()) {
+			if(tag.equals(asset.getTag())) {
+				inList = 1;
+			}
+		}
+		return inList;
+	}
+	public double getExpectedAssetReturn(String tag) {
+		return availableAssets.getExpectedReturn(tag);
+	}
+}

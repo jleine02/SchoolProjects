@@ -1,0 +1,51 @@
+
+public class Room {
+	private int roomNumber;
+	private String bedType;
+	private int rate;
+	private String occupantName;
+	
+	public Room(int roomNumber, String bedType, int rate) {
+		this.roomNumber = roomNumber;
+		this.bedType = bedType;
+		this.rate = rate;
+		this.occupantName = "";
+	}
+	
+	public Room() {
+		this.roomNumber = -1;
+		this.bedType = "none";
+		this.rate = -1;
+		this.occupantName = "Unoccupied";
+	}
+
+	public String getOccupantName() {
+		return occupantName;
+	}
+
+	public int getRoomNumber() {
+		return roomNumber;
+	}
+
+	public String getBedType() {
+		return bedType;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+	
+	public void setOccupantName(String occupantName) {
+		this.occupantName = occupantName;
+	}
+	
+	public boolean isOccupied() {
+		return true;
+	}
+	
+	public String toString() {
+		return "";
+	}
+	
+
+}

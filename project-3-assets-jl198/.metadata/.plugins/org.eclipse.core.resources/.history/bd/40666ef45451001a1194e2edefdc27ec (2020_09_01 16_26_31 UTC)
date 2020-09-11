@@ -1,0 +1,107 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+import org.junit.jupiter.api.Test;
+
+class PortfolioTest {
+
+	@Test
+	void test() {
+
+		try {
+			FileInputStream input = new FileInputStream("src/assetData.csv");
+			Scanner inputStream = new Scanner(input);
+			inputStream.useDelimiter(",");
+			
+			Assets testAssets = new Assets();
+			testAssets.inputAssets(inputStream);
+			
+			Portfolio testPortfolio = new Portfolio(testAssets);
+			
+			try {
+				Scanner keyboard = new Scanner(System.in);
+				String welcomeMessage = "Available assets for investment";
+				System.out.println(welcomeMessage);
+				String firstLine = "";
+				for(int i = 0; i < welcomeMessage.length(); i++) {
+					firstLine += "-";
+				}
+				System.out.println(firstLine);
+				System.out.printf("%10s", testPortfolio.assetsToString());
+				
+				try {
+					
+					Investment currentInvestment;
+					Double currentDollarAmount;
+					Double currentFutureValue;
+					String currentTag;
+					int inList;
+					/*
+					 * if(inList != -1) { currentFutureValue = currentDollarAmount * Math.pow(1 +
+					 * testAssets.getExpectedReturn(currentTag), 10); currentInvestment = new
+					 * Investment(currentTag, currentDollarAmount, currentFutureValue);
+					 * testPortfolio.addInvestmentToPortfolio(currentInvestment); }
+					 * System.out.println("Investing " + currentDollarAmount + " in " + currentTag +
+					 * " has an expected future value of: " + currentFutureValue);
+					 * 
+					 */
+					do {
+						System.out.print("Enter the amount to invest in dollars: ");				
+						currentDollarAmount = keyboard.nextDouble();
+						System.out.print("Enter the asset symbol to invest in: ");
+						currentTag = keyboard.next().toUpperCase();
+						keyboard.nextLine();
+
+						inList = testPortfolio.checkInList(currentTag);
+						if(inList == -1) {
+							System.out.println("Tag not available");
+							continue;
+						} else {
+							currentFutureValue = currentDollarAmount * Math.pow(1 + testAssets.getExpectedReturn(currentTag), 10);
+							currentInvestment = new Investment(currentTag, currentDollarAmount, currentFutureValue);
+							testPortfolio.addInvestmentToPortfolio(currentInvestment);
+						}
+						if(currentDollarAmount > 0) {
+							System.out.println("Investing " + currentDollarAmount + " in " + currentTag + 
+									" has an expected future value of: " + + currentFutureValue);
+						}
+					} while (testPortfolio.getInvestmentSize() < 10 && currentDollarAmount >= 0);
+					
+					FileOutputStream output = new FileOutputStream("src/portfolio.txt");
+					PrintWriter outFileStream = new PrintWriter(output);
+					
+					outFileStream.print("+--------------+-----------------+--------------------+\n");
+					outFileStream.print("| ASSET SYMBOL | AMOUNT INVESTED | VALUE IN TEN YEARS |\n");
+					outFileStream.print("+==============+=================+====================+\n");
+					for(Investment investment : testPortfolio.getInvestments()) {
+						outFileStream.printf("| %-13s", investment.tagToString());
+						outFileStream.printf("| %-17s", investment.dollarsInvestedToString());
+						outFileStream.printf("| %-19s|", investment.futureValueToString());
+						outFileStream.println();
+						
+					}
+					outFileStream.flush();
+				} catch (Exception e) {
+					
+				}
+				
+				
+			} catch (IllegalArgumentException e) {
+				System.out.println("there is an error");
+			}
+		} catch (FileNotFoundException e) {
+			System.out.print(e.getClass() + " " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Something Else");
+		}
+
+
+	}
+	
+}

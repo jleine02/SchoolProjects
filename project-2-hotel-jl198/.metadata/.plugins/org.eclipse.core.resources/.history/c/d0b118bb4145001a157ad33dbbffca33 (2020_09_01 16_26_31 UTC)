@@ -1,0 +1,13 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class HotelTest {
+
+	@Test
+	void test() {
+		Hotel test1 = new Hotel("Jake's Place", "Seattle, WA");
+		System.out.println(test1.toString());
+	}
+
+}

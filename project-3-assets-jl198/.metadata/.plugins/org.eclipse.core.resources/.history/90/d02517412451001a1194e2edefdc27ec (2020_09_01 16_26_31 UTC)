@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Assets {
+	private ArrayList<Asset> assetList;
+	
+	public Assets() {
+		assetList = new ArrayList<Asset>();
+	}
+	
+	public void inputAssets(Scanner scnr) {
+	      Asset currentAsset;
+	      String currentTag;
+	      String currentName;
+	      Double firstDouble;
+	      Double secondDouble;
+	      Double thirdDouble;
+	      int fieldCount = 0;
+	      String weightScheme;
+	      String[] line;
+
+	      while (scnr.hasNextLine()) {
+	         line = scnr.nextLine().split(",");
+	         fieldCount = line.length;
+	         currentTag = line[0];
+	         currentName = line[1];
+	         firstDouble = Double.parseDouble(line[2]);
+	         if(fieldCount == 3) {
+	        	 currentAsset = new StableAsset(currentTag, currentName, firstDouble);
+	        	 assetList.add(currentAsset);
+	         } else {
+//	        	 if(fieldCount)
+	         
+	        	 secondDouble = Double.parseDouble(line[3]);
+	        	 thirdDouble = Double.parseDouble(line[2]);
+//	        	 currentAsset = new VariableAsset()
+	        	 
+	         }
+	         
+	      }
+	   }
+}

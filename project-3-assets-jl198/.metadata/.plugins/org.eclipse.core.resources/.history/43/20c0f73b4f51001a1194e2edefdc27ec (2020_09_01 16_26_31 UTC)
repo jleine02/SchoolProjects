@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+
+public class Investment {
+	private String investmentTag;
+	private double dollarsInvested;
+	private double futureValue;
+
+		
+	public Investment(String investmentTag, double dollarsInvested, double futureValue) {
+		this.investmentTag = investmentTag;
+		this.dollarsInvested = dollarsInvested;
+		this.futureValue = futureValue;
+	}
+	
+	/*
+	 * private double calculateReturn(String tag, Assets assets) { for(Asset asset :
+	 * assets) { if(this.investmentTag == asset.getTag()) { return
+	 * this.dollarsInvested * Math.pow(1 + asset.getExpectedReturn(), 10); } else {
+	 * continue; } } return -1; }
+	 */
+}

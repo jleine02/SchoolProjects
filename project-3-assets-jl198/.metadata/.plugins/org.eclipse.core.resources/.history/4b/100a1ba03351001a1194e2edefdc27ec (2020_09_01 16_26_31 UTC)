@@ -1,0 +1,65 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Assets {
+	private ArrayList<Asset> assetList;
+	
+	public Assets() {
+		assetList = new ArrayList<Asset>();
+	}
+	
+	public void inputAssets(Scanner scnr) throws IllegalArgumentException {
+	      Asset currentAsset;
+	      String currentTag;
+	      String currentName;
+	      Double firstDouble;
+	      Double secondDouble;
+	      Double thirdDouble;
+	      String weightScheme;
+	      String[] line;
+	      
+//	      try {
+		      while (scnr.hasNextLine()) {
+		         line = scnr.nextLine().split(",");
+		         currentTag = line[0];
+		         currentName = line[1];
+		         try {
+		        	 firstDouble = Double.parseDouble(line[2]);
+		         } catch (Exception e){
+		        	 if(line[3] == "" && line[4] == "") {
+		        		 break;
+		        	 } else {
+		        		 firstDouble = null;
+		        	 }
+		         }
+		         	         	         
+		         if(line[3] == "" && line[4] == "") {
+		        	 currentAsset = new StableAsset(currentTag, currentName, firstDouble);
+		        	 assetList.add(currentAsset);
+		         } else {
+		        	 if(firstDouble == null) {
+		        		 weightScheme = "B";
+		        		 secondDouble = Double.parseDouble(line[3]);
+		        		 thirdDouble = Double.parseDouble(line[4]);
+		        		 currentAsset = new VariableAsset(currentTag, currentName, firstDouble, secondDouble, thirdDouble, weightScheme);
+		        		 assetList.add(currentAsset);
+		        	 } else {
+		        		 weightScheme = "A";
+		        		 secondDouble = Double.parseDouble(line[3]);
+		        		 thirdDouble = Double.parseDouble(line[4]);
+		        		 currentAsset = new VariableAsset(currentTag, currentName, firstDouble, secondDouble, thirdDouble, weightScheme);
+		        		 assetList.add(currentAsset);
+		        	 }
+		         }
+		      }
+//	      } catch (IllegalArgumentException e) {
+//	    	  System.out.print(e.getClass() + " " + e.getMessage());
+//	      }
+	}	
+
+	
+	public String getAssetNameAtIndex(int index) {
+		return this.assetList.get(index).getName();
+	}
+}
+

@@ -1,0 +1,135 @@
+// Jacob Leiner, Project 2 - Hotel: Hotel Class, COP 5007 Spring 2020, Prof Bitner, 2/1/2020
+
+public class Hotel {
+	private Room[] rooms;
+	private String name;
+	private String location;
+	private int numberOfRooms;
+	private static final int NOT_FOUND = -1;
+	
+	// Constructor using paramaters
+	public Hotel(String name, String location) {
+		setName(name);
+		setLocation(location);
+		setNumberOfRooms(0);
+		setRooms();
+	}
+	
+	// Default constuctor
+	public Hotel() {
+		setName("");
+		setLocation("");
+		setNumberOfRooms(0);
+		setRooms();
+	}
+	
+	// Counts the number of rooms within the rooms array where isOccupied is true and compares it to the hotel's numberOfRooms field
+	public boolean isFull() {
+		int occupiedCount = 0;
+		for(int i = 0; i < rooms.length; i++) {
+			if(rooms[i].isOccupied()) {
+				occupiedCount++;
+			}
+		}
+		return occupiedCount == numberOfRooms;
+	}
+	
+	// checks to make sure the roomNumber does not exist before creating the room object
+	public boolean addRoom(int roomNumber, String bedType, int rate) {
+		boolean roomNumberExists = false;
+		for(int i = 0; i < numberOfRooms; i++) { // check this if this method doesn't work and replace with rooms.length
+			if(rooms[i].getRoomNumber() == roomNumber) {
+				roomNumberExists = true;
+			}
+		}
+		
+		// if thye roomNumber does not exist and the Hotel is not full of rooms (10 max)
+		if(!roomNumberExists && this.numberOfRooms < 10) {
+			rooms[this.numberOfRooms] = new Room(roomNumber, bedType, rate);
+			numberOfRooms++;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	// checks to make sure that the bedType is still available prior to setting the room to occupied within the hotel rooms array
+	public boolean addReservation(String bedType, String occupantName) {
+		for(int i = 0; i < this.numberOfRooms; i++) {
+			if((rooms[i].getBedType() == bedType) && (!rooms[i].isOccupied())) {
+				rooms[i].setOccupantName(occupantName);
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	// uses private findReservation to check if there are rooms with the occupant name
+	public boolean cancelReservation(String occupantName) {
+		int roomsChecked = 0;
+		boolean reservationExists = false;
+		while (roomsChecked <= this.numberOfRooms) {
+			if(findReservation(occupantName) != -1) {
+				rooms[findReservation(occupantName)].setOccupantName("");
+				reservationExists = true;
+			}
+			roomsChecked++;
+		}
+		
+		if(reservationExists) {
+			System.out.println(occupantName + " reservation has been canceled.");
+		} else {
+			System.out.println("Reservation has not been canceled.");
+		}
+		return reservationExists;
+	}
+	
+	// if a room object within the rooms array contains the occupant name we are searching for return the index of that object 
+	private int findReservation(String occupantName) {
+		for(int i = 0; i < this.numberOfRooms; i ++) {
+			if(rooms[i].getOccupantName().equals(occupantName)) {
+				return i;
+			}
+		}
+		
+		return NOT_FOUND;
+	}
+	
+	public String toString() {
+		// Adds up the rates from each room within the rooms array that is currently occupied
+		int hotelRevenue = 0;
+		for(int i = 0; i < this.numberOfRooms; i ++) {
+			if(rooms[i].isOccupied()) {
+				hotelRevenue += rooms[i].getRate();
+			}
+		}
+		
+		String str =  "Hotel Name: " + this.name + "\nLocation: " + this.location + "\nNumber of Rooms: " + this.numberOfRooms 
+				+ "\nCurrent Revenue: $" + hotelRevenue + "\n===========================\n\n";
+		
+		for(int i = 0; i < this.numberOfRooms; i++) {
+				str += rooms[i].toString() + "\n\n";
+		}
+		
+		return str;
+		
+	}
+
+	private void setRooms() {
+		this.rooms = new Room[10];
+	}
+
+	private void setName(String name) {
+		this.name = name;
+	}
+
+	private void setLocation(String location) {
+		this.location = location;
+	}
+
+	private void setNumberOfRooms(int numberOfRooms) {
+		this.numberOfRooms = numberOfRooms;
+	}
+
+}

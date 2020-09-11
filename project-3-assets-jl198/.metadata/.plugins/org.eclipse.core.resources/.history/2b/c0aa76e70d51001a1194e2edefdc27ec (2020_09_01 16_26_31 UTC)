@@ -1,0 +1,8 @@
+
+public class StableAsset extends Asset{
+	private double expectedReturn;
+	
+	public double calculateReturn(int amount, String weightScheme) {
+		return amount * Math.pow((1 + expectedReturn),10);
+	}
+}
